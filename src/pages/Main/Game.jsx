@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "../../components/Button";
 import "../../assets/css/Game.css";
 import InputWithLabel from "../../components/InputWithLabel";
 import BackButton from "../../components/BackButton";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Cross from "../../components/Cross";
 import Circle from "../../components/Circle";
+import { MainContext } from "../Context/MainContextComponent";
 
 const Game = () => {
-  const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const { id } = useParams();
+  const { handleGetGame, selectedGame, setSelectedGame } =
+    useContext(MainContext);
+
+  useEffect(() => {
+    handleGetGame(id);
+  }, []);
+  
   return (
     <div className="game-container">
       <div className="game-container_back">
@@ -23,7 +31,9 @@ const Game = () => {
       <div className="game-container_inner">
         <p>Game with Tanmay</p>
         <p>Your Piece</p>
-        <Cross style={{textAlign:"left",marginBottom:"30px",fontSize:"2.5em"}}/>
+        <Cross
+          style={{ textAlign: "left", marginBottom: "30px", fontSize: "2.5em" }}
+        />
         <div className="game-status flex-center-center">
           <span>Your move</span>
         </div>

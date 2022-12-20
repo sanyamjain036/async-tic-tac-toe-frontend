@@ -2,13 +2,14 @@ import React, { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
-import { createGame, getAllGames, login, register } from "./API";
+import { createGame, getAllGames, getGame, login, register } from "./API";
 
 export const MainContext = createContext();
 
 const MainContextComponent = ({ children }) => {
   const navigate = useNavigate();
   const [allGames, setAllGames] = useState([]);
+  const [selectedGame, setSelectedGame] = useState(null);
 
   const handleRegister = async (values) => {
     try {
@@ -59,8 +60,19 @@ const MainContextComponent = ({ children }) => {
   };
   const handleGetAllGames = async () => {
     try {
-      const res=await getAllGames();
+      const res = await getAllGames();
       setAllGames(res.data);
+    } catch (e) {
+      console.log(e.response);
+      toast.error(e.response.data.message, {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+    }
+  };
+  const handleGetGame = async (id) => {
+    try {
+      const res = await getGame(id);
+      setSelectedGame(res.data);
     } catch (e) {
       console.log(e.response);
       toast.error(e.response.data.message, {
@@ -76,7 +88,10 @@ const MainContextComponent = ({ children }) => {
         handleLogin,
         handleCreateGame,
         handleGetAllGames,
+        handleGetGame,
         allGames,
+        selectedGame,
+        setSelectedGame,
       }}
     >
       {children}

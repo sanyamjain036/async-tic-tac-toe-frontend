@@ -5,26 +5,44 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { useNavigate } from "react-router";
 import { MainContext } from "../Context/MainContextComponent";
 import useAuth from "../../hooks/useAuth";
+import moment from "moment/moment";
 
 const GameCard = (props) => {
   const navigate = useNavigate();
-  const {auth}=useAuth();
-  const opponent=props.item.player1._id===auth.id?props.item.player2:props.item.player1;
-  
+  const { auth } = useAuth();
+  const opponent =
+    props.item.player1._id === auth.id
+      ? props.item.player2
+      : props.item.player1;
+  const date = moment(props.item.createdAt).format("Do MMM YYYY, h:ma");
+  let status;
+  let buttonData = "View Game";
+  if (props.item.status === 0) {
+    if (props.item.currentChance === auth.id) {
+      status = "It’s your turn to play now.";
+      buttonData = "Play!";
+    } else {
+      status = "You’ve made your move! Waiting for them.";
+    }
+  } else if (props.item.status === 1) {
+    status = props.item.winner._id === auth.id ? "You won!" : "You Loss!";
+  } else if (props.item.status === -1) {
+    status = "It’s a Draw!";
+  }
   return (
     <div className="gameCard">
       <div className="gameCard-inner">
         <h3>{`Game with ${opponent.name}`}</h3>
-        <p>Tanmay just made their move! It’s your turn to play now.</p>
-        <small>9th June 2022, 3:15pm</small>
+        <p>{status}</p>
+        <small>{date}</small>
       </div>
       <Button
         color="#F2C94C"
         width="21vw"
         height="40px"
-        handleClick={() => navigate("/start")}
+        handleClick={() => navigate(`/game/${props.item._id}`)}
       >
-        Let's Play
+        {buttonData}
       </Button>
     </div>
   );
@@ -71,6 +89,7 @@ const Home = () => {
           width="10vw"
           height="40px"
           className="flex-center-center"
+          handleClick={() => navigate("/start")}
         >
           <AiOutlinePlus style={{ fontSize: "20px" }} />
           &nbsp; New Game
