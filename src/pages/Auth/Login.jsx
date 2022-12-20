@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../../components/Button";
 import "../../assets/css/Login.css";
 import InputWithLabel from "../../components/InputWithLabel";
 import BackButton from "../../components/BackButton";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { MainContext } from "../Context/MainContextComponent";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { handleLogin } = useContext(MainContext);
   const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    await handleLogin({ username, password });
+  };
+
   return (
     <div className="login-container">
       <div className="login-container_back">
@@ -42,14 +49,7 @@ const Login = () => {
         </div>
       </div>
       <div className="flex-center-center">
-        <Button
-          color={"#F2C94C"}
-          handleClick={() => {
-            toast.success("Success Notification !", {
-              position: toast.POSITION.BOTTOM_CENTER,
-            });
-          }}
-        >
+        <Button color={"#F2C94C"} handleClick={handleSubmit}>
           Login
         </Button>
       </div>

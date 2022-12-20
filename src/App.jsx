@@ -17,12 +17,15 @@ function App() {
   return (
     <div className="App">
       <Wrapper>
-        <MainContextComponent>
-          <BrowserRouter>
+        <BrowserRouter>
+          <MainContextComponent>
             <Routes>
               <Route path="/" element={<Layout />}>
                 {/* Public Routes */}
-                <Route path="/" element={auth ? <Home /> : <LandingPage />} />
+                <Route
+                  path="/"
+                  element={auth ? <Navigate to="/home" /> : <LandingPage />}
+                />
                 <Route
                   path="/login"
                   element={auth ? <Navigate to="/" /> : <Login />}
@@ -33,13 +36,14 @@ function App() {
                 />
                 {/* Private Routes */}
                 <Route element={<ProtectedRoutes />}>
+                  <Route path="/home" element={<Home />} />
                   <Route path="/start" element={<StartGame />} />
                   <Route path="/game/:id" element={<Game />} />
                 </Route>
               </Route>
             </Routes>
-          </BrowserRouter>
-        </MainContextComponent>
+          </MainContextComponent>
+        </BrowserRouter>
       </Wrapper>
     </div>
   );

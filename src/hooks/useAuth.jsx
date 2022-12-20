@@ -3,9 +3,9 @@ import jwt_decode from "jwt-decode";
 
 const useAuth = () => {
   const token = Cookies.get("token");
-  let auth = true;
+  let auth = false;
   if (token) {
-    let auth = jwt_decode(token);
+    auth = jwt_decode(token);
   }
   return { auth };
 };

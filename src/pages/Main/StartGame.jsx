@@ -1,20 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../../components/Button";
 import "../../assets/css/Login.css";
 import InputWithLabel from "../../components/InputWithLabel";
 import BackButton from "../../components/BackButton";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { MainContext } from "../Context/MainContextComponent";
 
 const StartGame = () => {
   const [email, setEmail] = useState("");
+  const { handleCreateGame } = useContext(MainContext);
   const navigate = useNavigate();
+  const handleSubmit = async () => {
+    await handleCreateGame({ email });
+  };
   return (
     <div className="login-container">
       <div className="login-container_back">
         <BackButton
           handleClick={() => {
-            navigate("/");
+            navigate("/home");
           }}
         />
       </div>
@@ -23,7 +28,7 @@ const StartGame = () => {
         <p>Whom do you want to play with?</p>
         <div>
           <InputWithLabel
-            type="text"
+            type="email"
             value={email}
             id="email"
             label="Email"
@@ -33,14 +38,7 @@ const StartGame = () => {
         </div>
       </div>
       <div className="flex-center-center">
-        <Button
-          color={"#F2C94C"}
-          handleClick={() => {
-            toast.success("Success Notification !", {
-              position: toast.POSITION.BOTTOM_CENTER,
-            });
-          }}
-        >
+        <Button color={"#F2C94C"} handleClick={handleSubmit}>
           Start a Game
         </Button>
       </div>

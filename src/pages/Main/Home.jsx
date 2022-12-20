@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "../../components/Button";
 import "../../assets/css/Home.css";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useNavigate } from "react-router";
+import { MainContext } from "../Context/MainContextComponent";
+import useAuth from "../../hooks/useAuth";
 
-const GameCard = () => {
+const GameCard = (props) => {
   const navigate = useNavigate();
+  const {auth}=useAuth();
+  const opponent=props.item.player1._id===auth.id?props.item.player2:props.item.player1;
+  
   return (
     <div className="gameCard">
       <div className="gameCard-inner">
-        <h3>Game with Harsh</h3>
+        <h3>{`Game with ${opponent.name}`}</h3>
         <p>Tanmay just made their move! It’s your turn to play now.</p>
         <small>9th June 2022, 3:15pm</small>
       </div>
@@ -26,9 +31,14 @@ const GameCard = () => {
 };
 
 const Home = () => {
-  const [state, setState] = useState(true);
   const navigate = useNavigate();
-  if (state) {
+  const { handleGetAllGames, allGames } = useContext(MainContext);
+
+  useEffect(() => {
+    handleGetAllGames();
+  }, []);
+
+  if (allGames.length === 0) {
     return (
       <div className="home-container">
         <p className="home-container_head">Your Games</p>
@@ -51,8 +61,8 @@ const Home = () => {
     <div className="home-container">
       <p className="home-container_head">Your Games</p>
       <div className="home-container_items">
-        {[1, 2, 3, 4, 5, 6].map((item) => {
-          return <GameCard />;
+        {allGames.map((item) => {
+          return <GameCard key={item._id} item={item} />;
         })}
       </div>
       <div className="floating-btn-container">

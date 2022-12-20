@@ -14,4 +14,26 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
+export const register = (values) => {
+  return API.post("/users", values);
+};
 
+export const login = (values) => {
+  return API.post("/users/login", values);
+};
+
+export const createGame = (values) => {
+  return API.post("/games/create", values);
+};
+
+export const updateGame = (id, values) => {
+  return API.put(`/games/update/${id}`, values);
+};
+
+export const getGame = (id) => {
+  return API.get(`/games/${id}`);
+};
+
+export const getAllGames = () => {
+  return API.get(`/games`);
+};

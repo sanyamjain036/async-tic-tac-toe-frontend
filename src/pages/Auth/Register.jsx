@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../../components/Button";
 import "../../assets/css/Register.css";
 import InputWithLabel from "../../components/InputWithLabel";
 import BackButton from "../../components/BackButton";
 import { useNavigate } from "react-router-dom";
+import { MainContext } from "../Context/MainContextComponent";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const { handleRegister } = useContext(MainContext);
   const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    await handleRegister({
+      name,
+      email,
+      username,
+      password,
+    });
+  };
   return (
     <div className="login-container">
       <div className="register-container_back">
@@ -59,7 +71,9 @@ const Register = () => {
         </div>
       </div>
       <div className="flex-center-center">
-        <Button color={"#F2C94C"}>Register</Button>
+        <Button color={"#F2C94C"} handleClick={handleSubmit}>
+          Register
+        </Button>
       </div>
     </div>
   );
