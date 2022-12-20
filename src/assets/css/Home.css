@@ -1,0 +1,99 @@
+.home-container {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  padding: 10px;
+  height: 90vh;
+  overflow-y: scroll;
+  position: relative;
+}
+.home-container_head {
+  font-family: "Epilogue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: -0.05em;
+  color: #333333;
+  margin-bottom: 30px;
+}
+.home-container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.home-container_items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.floating-btn-container {
+  position: sticky;
+  display: inline-block;
+  left: 80vw;
+  bottom: 3vh;
+}
+.gameCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background: #ffffff;
+  box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  width: 23vw;
+  height: 190px;
+}
+
+.gameCard-inner {
+  display: flex;
+  flex-grow: 0.8;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.gameCard-inner h3 {
+  font-family: "Epilogue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 25px;
+  color: #333333;
+}
+
+.gameCard-inner p {
+  font-family: "Epilogue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #333333;
+}
+
+.gameCard-inner small {
+  font-family: "Epilogue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #3f3f3f;
+}
+
+.home-container_no_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 70vh;
+}
+
+.home-container_no_item p {
+  font-family: "Bilbo";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 80px;
+  text-align: center;
+  color: #000000;
+}

@@ -1,0 +1,31 @@
+.login-container {
+  height: 90vh;
+}
+.login-container_inner {
+  height: 72vh;
+  padding: 10px;
+}
+.login-container_back {
+  padding: 10px;
+  margin-bottom: 16px;
+}
+
+.login-container_inner p:nth-child(1) {
+  font-family: "Epilogue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  color: #333333;
+  margin-bottom: 8px;
+}
+.login-container_inner p:nth-child(2) {
+  font-family: "Epilogue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: -0.05em;
+  color: #333333;
+  margin-bottom: 32px;
+}

@@ -1,0 +1,50 @@
+.game-container {
+  height: 90vh;
+}
+.game-container_back {
+  padding: 10px;
+  margin-bottom: 8px;
+}
+.game-container_inner {
+  height: 72vh;
+  padding: 10px;
+}
+
+.game-container_inner p:nth-child(1) {
+  font-family: "Epilogue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: -0.05em;
+  color: #333333;
+  margin-bottom: 8px;
+}
+.game-container_inner p:nth-child(2) {
+  font-family: "Epilogue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #333333;
+}
+
+.game-status {
+  background: #ffe79e;
+  width: 23vw;
+  height: 40px;
+}
+.game-status span {
+  font-family: "Work Sans", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18.9159px;
+  color: #212121;
+}
+
+.board{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: #FFE79E;
+    grid-gap: 5px;
+}

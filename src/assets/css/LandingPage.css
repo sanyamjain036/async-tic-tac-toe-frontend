@@ -1,0 +1,33 @@
+.landing-container {
+  height: 90vh;
+}
+.landing-container_inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 70vh;
+}
+
+.landing-container_inner span {
+  font-family: "Bilbo";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 45px;
+}
+.landing-container_inner p {
+  font-family: "Bilbo";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 120px;
+  text-align: center;
+}
+
+.landing-container_inner-2{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
