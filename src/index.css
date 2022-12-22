@@ -149,6 +149,11 @@
   color: #ff4f4f;
 }
 
+.simple-cross:hover{
+  box-shadow:none;
+  cursor: default;
+}
+
 @media only screen and (max-width: 800px) {
   .wrapper-container {
     width: 100vw;

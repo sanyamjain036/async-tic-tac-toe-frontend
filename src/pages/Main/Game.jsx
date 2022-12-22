@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "../../components/Button";
 import "../../assets/css/Game.css";
-import InputWithLabel from "../../components/InputWithLabel";
 import BackButton from "../../components/BackButton";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import Cross from "../../components/Cross";
 import Circle from "../../components/Circle";
 import { MainContext } from "../Context/MainContextComponent";
@@ -76,6 +74,7 @@ const Game = () => {
         <p>Your Piece</p>
         <Cross
           style={{ textAlign: "left", marginBottom: "30px", fontSize: "2.5em" }}
+          className="simple-cross"
         />
         <div className="game-status flex-center-center">
           <span>
