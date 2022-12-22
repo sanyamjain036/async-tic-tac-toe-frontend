@@ -52,6 +52,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  width: 100%;
 }
 .gameCard-inner h3 {
   font-family: "Epilogue";
