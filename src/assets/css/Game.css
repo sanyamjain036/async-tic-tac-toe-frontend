@@ -31,7 +31,7 @@
 
 .game-status {
   background: #ffe79e;
-  width: 23vw;
+  /* width: 23vw; */
   height: 40px;
 }
 .game-status span {
