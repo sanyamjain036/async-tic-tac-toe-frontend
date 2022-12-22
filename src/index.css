@@ -162,4 +162,7 @@
   .input-container label{
     width: 80vw;
   }
+  .responsive-btn{
+    width: 40vw !important;
+  }
 }

@@ -14,7 +14,7 @@ const GameCard = (props) => {
     props.item.player1._id === auth.id
       ? props.item.player2
       : props.item.player1;
-  const date = moment(props.item.createdAt).format("Do MMM YYYY, h:ma");
+  const date = moment(props.item.updatedAt).format("Do MMM YYYY, h:ma");
   let status;
   let buttonData = "View Game";
   if (props.item.status === 0) {
@@ -40,6 +40,7 @@ const GameCard = (props) => {
         color="#F2C94C"
         width="21vw"
         height="40px"
+        className="responsive-btn"
         handleClick={() => navigate(`/game/${props.item._id}`)}
       >
         {buttonData}
@@ -67,6 +68,7 @@ const Home = () => {
             color="#F2C94C"
             width="23vw"
             height="40px"
+            className="responsive-btn"
             handleClick={() => navigate("/start")}
           >
             Start a new game
@@ -88,7 +90,7 @@ const Home = () => {
           color="#270F36"
           width="10vw"
           height="40px"
-          className="flex-center-center"
+          className="flex-center-center responsive-btn"
           handleClick={() => navigate("/start")}
         >
           <AiOutlinePlus style={{ fontSize: "20px" }} />
