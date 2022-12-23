@@ -1,6 +1,6 @@
 import "./App.css";
 import Wrapper from "./components/Wrapper";
-import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import useAuth from "./hooks/useAuth";
 import Layout from "./components/Layout";
 import ProtectedRoutes from "./components/ProtectedRoutes";
@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="App">
       <Wrapper>
-        <HashRouter>
+        <BrowserRouter>
           <MainContextComponent>
             <Routes>
               <Route path="/" element={<Layout />}>
@@ -43,7 +43,7 @@ function App() {
               </Route>
             </Routes>
           </MainContextComponent>
-        </HashRouter>
+        </BrowserRouter>
       </Wrapper>
     </div>
   );
