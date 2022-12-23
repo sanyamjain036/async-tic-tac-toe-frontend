@@ -11,7 +11,7 @@ import Box from "../../components/Box";
 
 const Game = () => {
   const navigate = useNavigate();
-  const [crossedIndex, setCrossedIndex] = useState(-1);
+
   const { id } = useParams();
   const {
     handleGetGame,
@@ -24,6 +24,8 @@ const Game = () => {
     isMeWinner,
     isDraw,
     isFinished,
+    crossedIndex,
+    setCrossedIndex,
   } = useContext(MainContext);
   const { auth } = useAuth();
 
@@ -40,14 +42,18 @@ const Game = () => {
       return;
     }
     const copyOfCurrentGame = [...selectedGame.currentGame];
+    //not changing existing chance
     if (crossedIndex === -1 && copyOfCurrentGame[index] === auth.id) return;
+    //make a chance
     else if (crossedIndex === -1) {
       setCrossedIndex(index);
       copyOfCurrentGame[index] = auth.id;
       setSelectedGame((prev) => {
         return { ...prev, currentGame: copyOfCurrentGame };
       });
-    } else if (crossedIndex === index) {
+    }
+    //remove your chance
+    else if (crossedIndex === index) {
       setCrossedIndex(-1);
       copyOfCurrentGame[index] = "";
       setSelectedGame((prev) => {

@@ -23,6 +23,7 @@ const MainContextComponent = ({ children }) => {
   const navigate = useNavigate();
   const [allGames, setAllGames] = useState([]);
   const [selectedGame, setSelectedGame] = useState(null);
+  const [crossedIndex, setCrossedIndex] = useState(-1);
   const { auth } = useAuth();
 
   const handleRegister = async (values) => {
@@ -142,6 +143,7 @@ const MainContextComponent = ({ children }) => {
 
     socket.on("update-game", (updatedGame) => {
       setSelectedGame(updatedGame);
+      setCrossedIndex(-1);
     });
 
     socket.on("disconnect", () => {
@@ -165,6 +167,8 @@ const MainContextComponent = ({ children }) => {
         handleGetGame,
         handleUpdateGame,
         setSelectedGame,
+        crossedIndex,
+        setCrossedIndex,
         opponent,
         // isMe,
         isMyMove,
