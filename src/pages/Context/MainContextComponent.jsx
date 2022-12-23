@@ -1,4 +1,4 @@
-import React, { createContext, useState, useMemo } from "react";
+import React, { createContext, useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
@@ -11,6 +11,11 @@ import {
   updateGame,
 } from "./API";
 import useAuth from "../../hooks/useAuth";
+import io from "socket.io-client";
+
+// const baseURL = "http://127.0.0.1:5000";
+const baseURL = "https://async-tic-tac-toe-backend.onrender.com/";
+const socket = io(baseURL);
 
 export const MainContext = createContext();
 
@@ -92,7 +97,7 @@ const MainContextComponent = ({ children }) => {
   const handleUpdateGame = async (id, values) => {
     try {
       const res = await updateGame(id, values);
-      setSelectedGame(res.data);
+      // setSelectedGame(res.data);
     } catch (e) {
       console.log(e.response);
       toast.error(e.response.data.message, {
@@ -129,6 +134,26 @@ const MainContextComponent = ({ children }) => {
     if (!selectedGame) return "";
     return selectedGame.status !== 0;
   }, [selectedGame]);
+
+  useEffect(() => {
+    socket.on("connnection", () => {
+      console.log("connected to server");
+    });
+
+    socket.on("update-game", (updatedGame) => {
+      setSelectedGame(updatedGame);
+    });
+
+    socket.on("disconnect", () => {
+      console.log("Socket disconnecting");
+    });
+
+    return () => {
+      socket.off("connnection");
+      socket.off("disconnect");
+      socket.off("update-game");
+    };
+  }, []);
 
   return (
     <MainContext.Provider
